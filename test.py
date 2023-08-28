@@ -5,8 +5,8 @@ def get_price_ardes(url):
     response = requests.get(url)
     if response.status_code == 200:
         soup = BeautifulSoup(response.content, 'html.parser')
-        # Use CSS selectors or XPath to extract the price element
-        price_element = soup.select_one('#price-tag')  # Adjust this selector
+
+        price_element = soup.select_one('#price-tag')
         if price_element:
             price = float(price_element.text.replace('лв', '').replace(',', '.'))
             return price
@@ -16,7 +16,7 @@ def get_price_lowPrice(url):
     response = requests.get(url)
     if response.status_code == 200:
         soup = BeautifulSoup(response.content, 'html.parser')
-        # Use CSS selectors or XPath to extract the price element
+
         price_element = soup.select_one('span[itemprop="price"]')
         if price_element:
             price = float(price_element.text.replace('лв', '').replace(',', '.'))
